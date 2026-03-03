@@ -165,25 +165,32 @@ const Expensecategory = () => {
           </label>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row gap-6" >
-        <div className="bg-teal-50 shadow-md rounded-2xl p-4 w-full lg:w-2/3" >
-          <table className="w-full  text-left border-collapse">
-            <thead>
-              <tr className="bg-blue-100 text-blue-700">
-                <th className="p-3">Date</th>
-                <th className="p-3">Category</th>
-                <th className="p-3">Amount</th>
-                <th className="p-3">Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                filteredData.length > 0 ? (
+      <div className="flex flex-col lg:flex-row gap-6 w-full px-4">
+
+        
+        <div className="bg-teal-50 shadow-md rounded-2xl w-full lg:w-2/3 p-6">
+
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-blue-100 text-blue-700">
+                  <th className="p-3">Date</th>
+                  <th className="p-3">Category</th>
+                  <th className="p-3">Amount</th>
+                  <th className="p-3">Note</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {filteredData.length > 0 ? (
                   filteredData.map((item) => (
                     <tr key={item.id} className="border-b hover:bg-gray-50">
                       <td className="p-3">{item.date}</td>
                       <td className="p-3">{item.category}</td>
-                      <td className="p-3 text-green-600 font-semibold">${item.amount}</td>
+                      <td className="p-3 text-green-600 font-semibold">
+                        ${item.amount}
+                      </td>
                       <td className="p-3">{item.note}</td>
                     </tr>
                   ))
@@ -193,24 +200,26 @@ const Expensecategory = () => {
                       No Data Found
                     </td>
                   </tr>
-                )
-              }
+                )}
+              </tbody>
+            </table>
+          </div>
 
-            </tbody>
-            <div className="mt-4 font-semibold text-right text-blue-600">
-              Total Amount : <span className="text-red-500">${totalAmount}</span>
-            </div>
-          </table>
-          <div>
-
+          
+          <div className="mt-4 font-semibold text-right text-blue-600">
+            Total Amount :
+            <span className="text-red-500 ml-2">${totalAmount}</span>
           </div>
         </div>
 
-        <div className="bg-teal-50 shadow-md rounded-2xl p-4 w-full lg:w-1/3 h-100" >
-          <h2 className="text-xl text-blue-700 font-semibold text-center mb-4">Expense Bar chat</h2>
+        
+        <div className="bg-teal-50 shadow-md rounded-2xl p-4 w-full lg:w-1/3 h-[300px] md:h-[400px]">
+          <h2 className="text-xl text-blue-700 font-semibold text-center mb-4">
+            Expense Bar Chart
+          </h2>
 
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} >
+            <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
@@ -219,9 +228,9 @@ const Expensecategory = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
+
       </div>
     </div>
-
   )
 }
 export default Expensecategory;
